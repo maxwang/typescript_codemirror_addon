@@ -11,40 +11,38 @@ const ControlledCodeMirror: React.FC = () => {
     const [value, setValue] = useState("this is a test");
 
     return (
-        <>
-            <CodeMirror
-                value={value}
-                options={{
-                    mode: "xml",
-                    theme: "material",
-                    lineNumbers: true,
-                    lineWrapping: true,
-                    indentWithTabs: true,
-                    gutter: true,
-                    tabSize: 4,
-                    autofocus: true,
-                }}
-                onBeforeChange={(editor, data, value) => {
-                    setValue(value);
-                }}
-                onKeyDown={(editor, event) => {
-                    if (event.code === "F11") {
-                        editor.setOption(
-                            "fullScreen",
-                            !editor.getOption("fullScreen")
-                        );
+        <CodeMirror
+            value={value}
+            options={{
+                mode: "xml",
+                theme: "material",
+                lineNumbers: true,
+                lineWrapping: true,
+                indentWithTabs: true,
+                gutter: true,
+                tabSize: 4,
+                autofocus: true,
+            }}
+            onBeforeChange={(editor, data, value) => {
+                setValue(value);
+            }}
+            onKeyDown={(editor, event) => {
+                if (event.code === "F11") {
+                    editor.setOption(
+                        "fullScreen",
+                        !editor.getOption("fullScreen")
+                    );
 
-                        event.preventDefault();
-                        event.stopPropagation();
+                    event.preventDefault();
+                    event.stopPropagation();
+                }
+                if (event.code === "Escape") {
+                    if (editor.getOption("fullScreen")) {
+                        editor.setOption("fullScreen", false);
                     }
-                    if (event.code === "Escape") {
-                        if (editor.getOption("fullScreen")) {
-                            editor.setOption("fullScreen", false);
-                        }
-                    }
-                }}
-            />
-        </>
+                }
+            }}
+        />
     );
 };
 
