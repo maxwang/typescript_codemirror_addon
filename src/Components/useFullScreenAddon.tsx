@@ -1,7 +1,7 @@
 import CodeMirror, { Editor } from "codemirror";
 import "./FullScreenAddon.css";
 
-export const FullScreenAddon = (): void => {
+export const useFullScreenAddon = (): void => {
     CodeMirror.defineOption(
         "fullScreen",
         false,
